@@ -7,6 +7,9 @@ PAYOFF = [
     [[-1, -1], [10, -10]],
     [[-10, 10], [1, 1]]
 ]
+
+FORGET_SPEED = 100
+
 def payoff(a, b):
     return PAYOFF[a][b]
 
@@ -18,7 +21,7 @@ def decide(history: list):
     s = 0.25
     t = len(history)
     for h in history:
-        cnt[h] += math.pow(t * 100, -d)
+        cnt[h] += math.pow(t * FORGET_SPEED, -d)
         t = t - 1
     cnt[0] = math.log(cnt[0])
     cnt[1] = math.log(cnt[1])
