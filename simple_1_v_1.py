@@ -8,14 +8,12 @@ PAYOFF = [
     [[-10, 10], [1, 1]]
 ]
 
-FORGET_SPEED = 100
+FORGET_SPEED = 0.5
 
 def payoff(a, b):
     return PAYOFF[a][b]
 
 def decide(history: list):
-    if len(history) == 0:
-        return random.randint(0, 1)
     cnt = [1, 1]
     d = 0.5
     s = 0.25
@@ -49,8 +47,8 @@ for __iter in range(N):
         payoffs[1] += p_b
         key = f"{a_decision}{b_decision}"
         choice[key] = choice.get(key, 0) + 1
-        overall_choice[key] = overall_choice.get(key, 0) + 1
-    
-    print(f'{choice.get("00", 0)}\t{choice.get("01", 0)}\t{choice.get("10", 0)}\t{choice.get("11", 0)}')
-choice = overall_choice
-print(f'{choice.get("00", 0) / N}\t{choice.get("01", 0) / N}\t{choice.get("10", 0) / N}\t{choice.get("11", 0) / N}')
+        overall_choice[_iter] = overall_choice.get(_iter, {})
+        overall_choice[_iter][key] = overall_choice[_iter].get(key, 0) + 1
+
+for (k, v) in overall_choice.items():
+    print(v)
