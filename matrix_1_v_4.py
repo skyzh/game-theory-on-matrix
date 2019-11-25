@@ -4,7 +4,7 @@ from collections import deque
 
 DEFEAT = 0
 COOPERATE = 1
-T = 2
+T = 1.07
 PAYOFF = [
     [[0, 0], [T, 0]],
     [[0, T], [1, 1]]
@@ -61,7 +61,7 @@ def play_game(players, edges, memory_window):
         # to this point, strategy is the one to be stored into memory
         for p in range(N):
             nx = sum(1 if strategy[p] == x else 0 for x in memory[p])
-            qc = nx / memory_window
+            qc = nx / len(memory)
             if not random.random() < qc:
                 strategy[p] = 1 - strategy[p]
         # to this point, strategy of next round is updated
