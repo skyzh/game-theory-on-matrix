@@ -15,8 +15,8 @@ const unsigned char C = 1;
 const double WMIN = 0.1;
 const double WMAX = 1.0;
 const double K = 0.1;
-const double M = 5;
-const double T = 1.02;
+double M = 5;
+double T = 1.02;
 
 inline double payoff(unsigned char a, unsigned char b) {
     if (a == D && b == D) 
@@ -113,5 +113,6 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
 }
 
 int main() {
+    cin >> M >> T;
     return evolution();
 }
