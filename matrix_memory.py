@@ -50,19 +50,14 @@ def play_game(players, edges, memory_window, max_step):
         for p in range(N):
             if strategy[p] == COOPERATE:
                 coop_cnt += 1
-        print(f"#{_iter} window = {memory_window} cooperate rate = {coop_cnt / N}")
+        if _iter % 10 == 0:
+            print(f"#{_iter} T={T} window={memory_window} rate={coop_cnt / N}")
 
         for (x, y) in edges:
             payoffs[x] += payoff(strategy[x], strategy[y])
             payoffs[y] += payoff(strategy[y], strategy[x])
-            if player_for_decision[x] == 0:
-                player_for_decision[x] = y
-            if player_for_decision[y] == 0:
-                player_for_decision[y] = x
-            if random.random() < 0.5:
-                player_for_decision[x] = y
-            if random.random() < 0.5:
-                player_for_decision[y] = x
+            player_for_decision[x] = y
+            player_for_decision[y] = x
         # to this point, each player selected a neighbour to learn
         _strategy = strategy[:]
         for p in range(N):
@@ -85,4 +80,4 @@ def play_game(players, edges, memory_window, max_step):
             if len(memory[p]) > memory_window:
                 memory[p].popleft()
         # to this point, strategy of next round is updated
-play_game(*build_graph(50), M, 50000)
+play_game(*build_graph(50), M, 50001)
