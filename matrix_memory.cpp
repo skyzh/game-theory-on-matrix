@@ -72,6 +72,7 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
         for (auto&& x : strats)
             if (x == C) ++coop_cnt;
         // output
+        /*
         if (_iter % 10 == 0) {
             cout << "uuid=" << round_uuid;
             cout << " iter=" << _iter;
@@ -80,6 +81,8 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
             cout << " rate=" << ((double) coop_cnt / N);
             cout << endl;
         }
+         */
+
         // calculate payoff
         for (int i = 0; i < N; i++) {
             for (int d = 0; d < 4; d++) {
@@ -109,6 +112,13 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
             }
         }
     }
+    cout << "var data = { \"data\": [";
+    for (int i = 0; i < N; i++) {
+        cout << (int) strats[i];
+        if (i != N - 1) cout << ",";
+        if ((i + 1) % 100 == 0) cout << endl;
+    }
+    cout << "] }";
     return 0;
 }
 
