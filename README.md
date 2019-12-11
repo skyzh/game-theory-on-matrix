@@ -1,12 +1,5 @@
-# A Game
+# gaming-theory-on-matrix
 
-```bash
-echo "5 1.02" | make run > visualization/result.js
-```
+Final project for "Stochastic Simulation Method and Application".
 
-Then open visualization/index.html, save result.svg
-
-```bash
-pip3 install cairosvg
-cairosvg result.svg -o result_5_1.02.png
-```
+Not fully open-sourced.
