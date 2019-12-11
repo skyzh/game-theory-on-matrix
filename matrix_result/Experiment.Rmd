@@ -1,0 +1,43 @@
+---
+title: "Experiment"
+output:
+  pdf_document:
+    fig_caption: true
+    keep_tex: true
+    latex_engine: xelatex
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data = read.csv("data.csv", header=FALSE)
+```
+
+```{r, fig.width=8, fig.height=8}
+N = length(data[,2])
+library("viridis")
+l_colors = rep(viridis(8), 3)
+used_colors = c()
+used_M = c()
+for (i in 2:17) {
+  M = data[i, 1]
+  rate = c(t(data[i, ]))
+  rate_mean <- sapply(1:length(rate), function(i) {mean(rate[i:i+1])})
+  color_ <- l_colors[i]
+  x = 1:length(rate_mean)
+  if (i == 2 || i == 2 + 8) {
+    if(i == 2 + 8) legend("topleft", legend=used_M, col=used_colors, lty=rep("solid", length(used_M)))
+    used_M = c()
+    used_colors = c()
+    plot(x, rate_mean, type="l",log="x", xlab="Iteration", ylab="Rate", ylim=c(0, 1), col=color_)
+  } else {
+    lines(x, rate_mean, col=color_)
+  }
+  used_M = c(used_M, M)
+  used_colors = c(used_colors, color_)
+}
+legend("topleft", legend=used_M, col=used_colors, lty=rep("solid", length(used_M)))
+```

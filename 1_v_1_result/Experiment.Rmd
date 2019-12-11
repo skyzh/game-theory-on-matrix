@@ -1,0 +1,41 @@
+---
+title: "Experiment"
+output:
+  pdf_document:
+    fig_caption: true
+    keep_tex: true
+    latex_engine: xelatex
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, fig.width=6, fig.height=6}
+par(mfrow=c(2,2))
+library("viridis")
+colors = viridis(4)
+plot_file <- function(filename, d) {
+  data = read.table(filename, header=TRUE, sep=" ")
+  data$N = 1:length(data$DD)
+  data
+  plot(DD~N, data, type="l", col=colors[1], ylim=c(0, 600), log="x", xlab="Iteration", ylab="Count", lwd=2, main=paste("d =", d))
+  lines(DC~N, data, type="l", col=colors[2], lwd=2)
+  lines(CD~N, data, type="l", col=colors[3], lwd=2)
+  lines(CC~N, data, type="l", col=colors[4], lwd=2)
+  legend("topleft", col=colors, lty=rep("solid"), legend=c("Defeat-Defeat", "Defeat-Coop", "Coop-Defeat", "Coop-Coop"))
+  data$CC
+}
+d = data.frame(
+  N = 1:300,
+  d1 = plot_file("result_1.0.txt", 1.0),
+  d5 = plot_file("result_5.0.txt", 5.0),
+  d10 = plot_file("result_10.0.txt", 10.0),
+  d50 = plot_file("result_50.0.txt", 50.0)
+)
+```
+
+```{r}
+plot(d1~N, d, type="l", col=colors[1], ylim=c(0, 600), log="x", xlab="Iteration", ylab="Count", lwd=2, main="Coop Count")
+```

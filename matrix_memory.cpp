@@ -62,7 +62,9 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
     for (int i = 0; i < N / 2; i++) strats[i] = C;
     for (int i = N / 2; i < N; i++) strats[i] = D;
     shuffle(strats.begin(), strats.end(), g);
-    
+
+    cout << "var data = { " << endl;
+    cout << "epoch: " << MAX_ITER << "," << endl;
     for (int _iter = 0; _iter < MAX_ITER; _iter++) {
         auto &strats = _strats[_iter % 2];
         auto &next_strats = _strats[(_iter + 1) % 2];
@@ -111,14 +113,17 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
                 mem[p].pop_front();
             }
         }
+        if (_iter % 10 == 0) {
+            cout << "epoch" << _iter << ": [" << endl;
+            for (int i = 0; i < N; i++) {
+                cout << (int) strats[i];
+                if (i != N - 1) cout << ",";
+                if ((i + 1) % 100 == 0) cout << endl;
+            }
+            cout << "], " << endl;
+        }
     }
-    cout << "var data = { \"data\": [";
-    for (int i = 0; i < N; i++) {
-        cout << (int) strats[i];
-        if (i != N - 1) cout << ",";
-        if ((i + 1) % 100 == 0) cout << endl;
-    }
-    cout << "] }";
+    cout << "}" << endl;
     return 0;
 }
 
