@@ -16,7 +16,7 @@ const double WMIN = 0.1;
 const double WMAX = 1.0;
 const double K = 0.1;
 double M = 5;
-double T = 1.02;
+double T = 1.05;
 
 inline double payoff(unsigned char a, unsigned char b) {
     if (a == D && b == D) 
@@ -36,7 +36,7 @@ inline int round_player(int i, int N) {
     return i;
 }
 
-int evolution(int L = 50, int MAX_ITER = 50001) {
+int evolution(int L = 50, int MAX_ITER = 5001) {
     random_device rd;
     mt19937 g(rd());
     uniform_int_distribution <> dir(0, 3);
@@ -48,12 +48,13 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
     assert(N % 2 == 0);
 
     vector <double> payoffs;
-    vector <unsigned char> _strats[2];
+    vector <unsigned char> _strats[2], checkpoint;
     vector <deque<double>> mem;
     payoffs.resize(N, 0);
     _strats[0].resize(N, 0);
     _strats[1].resize(N, 0);
     mem.resize(N);
+    checkpoint.resize(N, 0);
 
     const int direction[4] = { 1, -1, L, -L };
 
@@ -63,7 +64,7 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
     for (int i = N / 2; i < N; i++) strats[i] = D;
     shuffle(strats.begin(), strats.end(), g);
 
-    cout << "var data = { " << endl;
+    cout << "var data_" << M << " = { " << endl;
     cout << "epoch: " << MAX_ITER << "," << endl;
     for (int _iter = 0; _iter < MAX_ITER; _iter++) {
         auto &strats = _strats[_iter % 2];
@@ -73,17 +74,6 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
         int coop_cnt = 0;
         for (auto&& x : strats)
             if (x == C) ++coop_cnt;
-        // output
-        /*
-        if (_iter % 10 == 0) {
-            cout << "uuid=" << round_uuid;
-            cout << " iter=" << _iter;
-            cout << " T=" << T;
-            cout << " window=" << M;
-            cout << " rate=" << ((double) coop_cnt / N);
-            cout << endl;
-        }
-         */
 
         // calculate payoff
         for (int i = 0; i < N; i++) {
@@ -114,14 +104,14 @@ int evolution(int L = 50, int MAX_ITER = 50001) {
             }
         }
         if (_iter % 10 == 0) {
-            cout << "epoch" << _iter << ": [" << endl;
+            cout << "\"epoch" << _iter << "\": [" << endl;
             for (int i = 0; i < N; i++) {
-                cout << (int) strats[i];
-                if (i != N - 1) cout << ",";
-                if ((i + 1) % 100 == 0) cout << endl;
+                if (checkpoint[i] != strats[i]) cout << i << ", ";
             }
             cout << "], " << endl;
+            checkpoint = strats;
         }
+
     }
     cout << "}" << endl;
     return 0;
