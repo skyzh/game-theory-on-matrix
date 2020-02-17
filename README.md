@@ -1,4 +1,4 @@
-# gaming-theory-on-matrix
+# game-theory-on-matrix
 
 Final project for "Stochastic Simulation Method and Application".
 
