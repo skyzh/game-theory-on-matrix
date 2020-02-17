@@ -25,8 +25,7 @@ Design of this model is inspired by:
 
 1. Wang J, Liu L N, Dong E Z, et al. An improved fitness evaluation mechanism with memory in spatial
 prisoner's dilemma game on regular lattices[J]. Communications in Theoretical Physics, 2013, 59(3): 257.
-2. Szabó G, T{\H o}ke C. Evolutionary prisoner's dilemma game on a square lattice[J]. Physical Review E,
-1998, 58(1): 69.
+2. Szabó G, Tőke C. Evolutionary prisoner’s dilemma game on a square lattice[J]. Physical Review E, 1998, 58(1): 69.
 
 ## License
 
