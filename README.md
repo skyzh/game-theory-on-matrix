@@ -43,3 +43,9 @@ Animation of evolution on 50x50 grid
 ## License
 
 The simulation program and the visualization program is licensed under MIT.
+
+## Credit
+
+Model in this project is designed by Y. Su and R.Q. Lyu.
+
+Also thank J.Y. Xiang for model evaluation and running simulation.
