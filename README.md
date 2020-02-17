@@ -33,8 +33,7 @@ Simulation of 1v1 agent & Simulation on grid
 
 (cooperative agent proportion vs simulation epoch)
 
-<img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/1_v_1_result/coop_rate.png" width="45%">
-<img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/matrix_result/mcs_1.png" width="45%">
+<img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/1_v_1_result/coop_rate.png" width="45%"> <img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/matrix_result/mcs_1.png" width="45%">
 
 Animation of evolution on 50x50 grid
 
