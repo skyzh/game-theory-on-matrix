@@ -27,6 +27,20 @@ Design of this model is inspired by:
 prisoner's dilemma game on regular lattices[J]. Communications in Theoretical Physics, 2013, 59(3): 257.
 2. Szabó G, Tőke C. Evolutionary prisoner’s dilemma game on a square lattice[J]. Physical Review E, 1998, 58(1): 69.
 
+## Result
+
+Simulation of 1v1 agent & Simulation on grid
+
+(cooperative agent proportion vs simulation epoch)
+
+<img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/1_v_1_result/coop_rate.png" width="45%">
+<img src="https://github.com/skyzh/game-theory-on-matrix/raw/master/matrix_result/mcs_1.png" width="45%">
+
+Animation of evolution on 50x50 grid
+
+![grid visualization](https://user-images.githubusercontent.com/4198311/74626469-af809e00-518a-11ea-8858-b29e0fe3e29a.gif)
+
+
 ## License
 
 The simulation program and the visualization program is licensed under MIT.
